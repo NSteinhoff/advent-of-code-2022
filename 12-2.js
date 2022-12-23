@@ -33,7 +33,7 @@ const initMap = grid => grid.map(heights);
 
 const infinity = _ => Infinity;
 const initSteps = row => row.map(infinity);
-const initVisited = grid => grid.map(initSteps);
+const initVisited = map => map.map(initSteps);
 
 const sameRow = target => pos => pos.row === target.row;
 const sameCol = target => pos => pos.col === target.col;
@@ -72,7 +72,7 @@ const reduceStarts = (starts, cs, row) => cs.reduce(collectStarts(row), starts);
 const findEnd = grid => grid.reduce(reduceEnd, undefined);
 const findStarts = grid => grid.reduce(reduceStarts, []);
 
-const makeWalk = (map, arrived, visit, visitable, shorter) =>
+const makeWalk = (arrived, visit, visitable, shorter) =>
     function next(pos, steps) {
         visit(pos, steps);
 
@@ -96,7 +96,6 @@ require("fs").readFile("12.txt", "utf-8", (err, data) => {
     const visited = initVisited(map);
 
     const walk = makeWalk(
-        map,
         arrived(end),
         visit(visited),
         visitable(map),

@@ -66,9 +66,7 @@ const tune = point => point.x * 4000000 + point.y;
 require("fs").readFile("15.txt", "utf-8", (err, data) => {
     let row = 2000000;
     let max = 4000000;
-    data = example;
-    row = 10;
-    max = 20;
+    // data = example; row = 10; max = 20;
     const sensors = parse(data);
     const outlines = sensors.reduce(outline(sensors)(max), new Set());
     console.assert(outlines.size === 1, outlines);
