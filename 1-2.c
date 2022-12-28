@@ -1,39 +1,51 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "prelude.h"
 
-#define MAX_LINE_LEN 24
 #define MAX_NUMBERS 1000
+
+static const char example[] = "1000\n"
+			      "2000\n"
+			      "3000\n"
+			      "\n"
+			      "4000\n"
+			      "\n"
+			      "5000\n"
+			      "6000\n"
+			      "\n"
+			      "7000\n"
+			      "8000\n"
+			      "9000\n"
+			      "\n"
+			      "10000";
 
 static int cmp(const void *left, const void *right) {
 	return *(const int *)right - *(const int *)left;
 }
 
-int main() {
-	FILE *file = fopen("1.txt", "r");
-	char line[MAX_LINE_LEN];
+static int solve(char *input) {
 	int numbers[MAX_NUMBERS];
 
 	size_t i = 0;
 	int current = 0;
-	while (fgets(line, MAX_LINE_LEN, file)) {
-		if (strcmp(line, "\n") == 0) {
+
+	LINES(line, input) {
+		if (!strcmp(line, "\0")) {
 			numbers[i++] = current;
 			current = 0;
 		} else {
 			current += atoi(line);
 		}
 	}
-	printf("Collected: %zu calorie values.\n", i);
 
 	qsort(numbers, i, sizeof(int), cmp);
 
 	int total = 0;
-	for (int i = 0; i <= 2; i++) {
-		total += numbers[i];
-		printf("%d: %d\n", i + 1, numbers[i]);
-	}
+	for (int i = 0; i <= 2; i++) total += numbers[i];
 
-	printf("Total: %d\n", total);
+	return total;
+}
+
+int main() {
+	RUN(solve, strdup(example));
+	RUN(solve, read_to_string("1.txt"));
 	return 0;
 }

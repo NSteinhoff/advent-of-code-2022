@@ -1,20 +1,34 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "prelude.h"
 
-#define MAX_LINE 24
+static const char example[] = "1000\n"
+			      "2000\n"
+			      "3000\n"
+			      "\n"
+			      "4000\n"
+			      "\n"
+			      "5000\n"
+			      "6000\n"
+			      "\n"
+			      "7000\n"
+			      "8000\n"
+			      "9000\n"
+			      "\n"
+			      "10000";
 
-int main() {
-	FILE *file = fopen("1.txt", "r");
-	char line[MAX_LINE];
-
+static int solve(char *content) {
 	int max = 0;
 	int calories = 0;
-	while (fgets(line, MAX_LINE, file)) {
-		calories = strcmp(line, "\n") == 0 ? 0 : calories + atoi(line);
+
+	LINES(line, content) {
+		calories = !strcmp(line, "\0") ? 0 : calories + atoi(line);
 		max = calories > max ? calories : max;
 	}
 
-	printf("%d\n", max);
+	return max;
+}
+
+int main() {
+	RUN(solve, strdup(example));
+	RUN(solve, read_to_string("1.txt"));
 	return 0;
 }

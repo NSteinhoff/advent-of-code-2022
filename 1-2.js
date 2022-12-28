@@ -1,4 +1,4 @@
-require("fs").readFile("1.txt", "utf-8", (_, data) => {
+require("./run")('1')(data => {
     const calories = data.split("\n").reduce(
         (acc, line) => {
             if (line === "") acc.push(0);
@@ -10,5 +10,5 @@ require("fs").readFile("1.txt", "utf-8", (_, data) => {
     );
 
     calories.sort((a, b) => b - a);
-    console.log(calories.slice(0, 3).reduce((a, b) => a + b));
+    return calories.slice(0, 3).reduce((a, b) => a + b);
 });

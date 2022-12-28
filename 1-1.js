@@ -1,4 +1,4 @@
-require("fs").readFile("1.txt", "utf-8", (_, data) => {
+require("./run")('1')(data => {
     const maxCalories = data.split("\n").reduce(
         ({ max, calories }, line) => {
             const next = line === "" ? 0 : calories + Number.parseInt(line, 10);
@@ -7,5 +7,5 @@ require("fs").readFile("1.txt", "utf-8", (_, data) => {
         { max: 0, calories: 0 },
     ).max;
 
-    console.log(maxCalories);
+    return maxCalories;
 });
