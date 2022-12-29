@@ -37,7 +37,7 @@ const points = {
     win: 6,
 };
 
-require('fs').readFile("2.txt", "utf-8", (err, data) => {
+require('./run')('2')(data => {
     const score = data
         .split("\n")
         .filter(line => line)
@@ -49,5 +49,5 @@ require('fs').readFile("2.txt", "utf-8", (err, data) => {
         })
         .reduce((total, round) => total + round, 0);
 
-    console.log(score);
+    return score;
 });
