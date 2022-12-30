@@ -7,7 +7,7 @@ const priority = c => {
     return p >= a ? p - a + 1 : p - A + 27;
 };
 
-require("fs").readFile("3.txt", "utf-8", (err, data) => {
+require('./run')('3')(data => {
     const results = data
         .split("\n")
         .filter(l => l)
@@ -19,5 +19,5 @@ require("fs").readFile("3.txt", "utf-8", (err, data) => {
         .map(priority)
         .reduce((total, p) => total + p, 0);
 
-    console.log(results);
+    return results;
 });
