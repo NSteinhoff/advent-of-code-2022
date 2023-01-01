@@ -21,8 +21,8 @@ typedef struct {
 static size_t push(Stack *stack, char element) {
 	if (stack->head >= stack->capacity) {
 		stack->capacity = stack->capacity ? stack->capacity * 2 : 2;
-		stack->elements = realloc(stack->elements,
-					  sizeof(char) * stack->capacity);
+		stack->elements =
+			realloc(stack->elements, sizeof(char[stack->capacity]));
 		return push(stack, element);
 	}
 
@@ -96,7 +96,7 @@ static int solve(char *input, char *output) {
 }
 
 int main() {
-	RUNS(solve, strdup(example), 10);
-	RUNS(solve, read_to_string("5.txt"), 10);
+	RUNS(solve, strdup(example), N);
+	RUNS(solve, read_to_string("5.txt"), N);
 	return 0;
 }

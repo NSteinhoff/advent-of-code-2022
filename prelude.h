@@ -1,4 +1,5 @@
 #include <assert.h>
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -15,11 +16,11 @@
 	} while (0)
 #define RUNS(FUNC, INPUT, N)                                                   \
 	do {                                                                   \
-		char output[N] = {0};                                             \
+		char output[N + 1] = {0};                                      \
 		long start = get_nanos();                                      \
 		WITH(char, input, INPUT) {                                     \
-			FUNC(input, output);                                      \
-			printf("%s\n", output);                                   \
+			FUNC(input, output);                                   \
+			printf("%s\n", output);                                \
 		}                                                              \
 		long end = get_nanos();                                        \
 		printf("Duration: %.2lfms\n", (double)(end - start) / 1000);   \
