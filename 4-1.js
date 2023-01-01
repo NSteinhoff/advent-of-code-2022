@@ -3,9 +3,8 @@
 //      OR
 // a1.........a2
 //   b1...b2
-require("fs").readFile("4.txt", "utf-8", (err, data) => {
-    const result =
-        err ||
+require("./run")("4")(
+    data =>
         data
             .split("\n")
             .filter(l => l)
@@ -17,8 +16,5 @@ require("fs").readFile("4.txt", "utf-8", (err, data) => {
                 ([[a1, a2], [b1, b2]]) =>
                     // (a1 <= b1 && b2 <= a2) || (b1 <= a1 && a2 <= b2),
                     (a1 - b1) * (a2 - b2) <= 0,
-            )
-            .length;
-
-    console.log(result);
-});
+            ).length,
+);
