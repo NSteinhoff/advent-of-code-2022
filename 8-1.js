@@ -6,7 +6,7 @@ const example = `
 35390
 `;
 
-require("fs").readFile("8.txt", "utf-8", (err, data) => {
+const solve = data => {
     const grid = data
         .split("\n")
         .filter(Boolean)
@@ -42,11 +42,8 @@ require("fs").readFile("8.txt", "utf-8", (err, data) => {
         }
     }
 
-    const count = visibility
-        .flat()
-        .reduce((a, b) => a + b, 0);
+    return visibility.flat().reduce((a, b) => a + b, 0);
+};
 
-    const result = { grid, visibility, count };
-
-    console.log(result);
-});
+console.log(solve(example));
+require("./run")("8")(solve);
