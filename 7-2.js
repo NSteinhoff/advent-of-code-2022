@@ -64,6 +64,5 @@ const solve = data => {
     return find(tofree, tree);
 };
 
-require("fs").readFile("7.txt", "utf-8", (err, data) => {
-    console.log(err || solve(data));
-});
+console.log(solve(example));
+require("./run")("7")(solve);

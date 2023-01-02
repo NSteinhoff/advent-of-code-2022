@@ -43,15 +43,15 @@ const walk = (tree, iterlines) => {
     return tree;
 };
 
-const tally = (tree) => {
+const tally = tree => {
     let sum = 0;
     for (const [k, v] of Object.entries(tree)) {
-        if (k === '$size' && v < 100000) sum += v;
-        else if (typeof v === 'object') sum += tally(v);
+        if (k === "$size" && v < 100000) sum += v;
+        else if (typeof v === "object") sum += tally(v);
     }
 
     return sum;
-}
+};
 
 const solve = data => {
     const lines = data.split("\n").filter(l => l);
@@ -59,6 +59,5 @@ const solve = data => {
     return tally(walk({}, lines[Symbol.iterator]()));
 };
 
-require("fs").readFile("7.txt", "utf-8", (err, data) => {
-    console.log(err || solve(data));
-});
+console.log(solve(example));
+require("./run")("7")(solve);
