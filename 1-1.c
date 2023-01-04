@@ -20,7 +20,7 @@ static int solve(char *content) {
 	int calories = 0;
 
 	LINES(line, content) {
-		calories = !strcmp(line, "\0") ? 0 : calories + atoi(line);
+		calories = !strcmp(line, "") ? 0 : calories + atoi(line);
 		max = calories > max ? calories : max;
 	}
 
