@@ -27,7 +27,7 @@ Monkey 3:
     If false: throw to monkey 1`;
 
 require("fs").readFile("11.txt", "utf-8", (err, data) => {
-    const monkeys = data
+    const monkeys = example
         .split("\n\n")
         .filter(Boolean)
         .map(m => {
