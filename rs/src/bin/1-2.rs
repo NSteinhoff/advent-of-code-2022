@@ -41,7 +41,6 @@ fn solve(data: &str) -> i32 {
 
 fn main() -> std::io::Result<()> {
     println!("Example: {}", solve(EXAMPLE));
-    let data = std::fs::read_to_string("../1.txt")?;
-    println!("Problem: {}", solve(&data));
+    println!("Problem: {}", solve(&std::fs::read_to_string("../1.txt")?));
     Ok(())
 }

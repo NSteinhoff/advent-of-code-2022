@@ -56,6 +56,8 @@ static void reverse(Stack *stack) {
 	transfer(stack, &hold1);
 	transfer(&hold1, &hold2);
 	transfer(&hold2, stack);
+	free(hold1.elements);
+	free(hold2.elements);
 }
 
 static int solve(char *input, char *out) {

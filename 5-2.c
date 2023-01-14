@@ -51,6 +51,8 @@ static void reverse(Stack *stack) {
 	transfer(stack, &hold1);
 	transfer(&hold1, &hold2);
 	transfer(&hold2, stack);
+	free(hold1.elements);
+	free(hold2.elements);
 }
 
 static void move(int n, Stack *from, Stack *to) {
@@ -59,6 +61,7 @@ static void move(int n, Stack *from, Stack *to) {
 		push(&hold, pop(from));
 	for (int i = 0; i < n; i++)
 		push(to, pop(&hold));
+	free(hold.elements);
 }
 
 static int solve(char *input, char *output) {

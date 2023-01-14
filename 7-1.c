@@ -104,7 +104,9 @@ static bool startswith(char const *s, char const *prefix) {
 	return !(strncmp(s, prefix, strlen(prefix)));
 }
 
-static bool empty(char const *s) { return !strcmp(s, ""); }
+static bool empty(char const *s) {
+	return !strcmp(s, "");
+}
 
 static char *parse(Directory *parent, char *input) {
 	LINES(line, input) {
@@ -145,10 +147,11 @@ static int tally(Entry const *entry) {
 }
 
 static void destroy(Entry *entry) {
-	if (entry->type == F) return;
-
-	for (size_t i = 0; i < entry->d.len; i++)
-		destroy(entry->d.entries[i]);
+	if (entry->type == D) {
+		for (size_t i = 0; i < entry->d.len; i++)
+			destroy(entry->d.entries[i]);
+		free(entry->d.entries);
+	}
 
 	free(entry);
 }
