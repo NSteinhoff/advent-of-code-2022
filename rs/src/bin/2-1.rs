@@ -22,6 +22,6 @@ fn solve(input: &str) -> i32 {
 
 fn main() -> std::io::Result<()> {
     println!("Example: {}", solve(EXAMPLE));
-    println!("Example: {}", solve(&std::fs::read_to_string("../2.txt")?));
+    println!("Problem: {}", solve(&std::fs::read_to_string("../2.txt")?));
     Ok(())
 }

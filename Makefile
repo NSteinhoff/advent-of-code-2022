@@ -43,3 +43,6 @@ rs_%: ./rs/src/bin/%.rs
 
 js_%: %.js
 	@node $<
+
+ts_%: %.ts
+	@ts-node $<

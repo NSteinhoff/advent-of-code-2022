@@ -21,6 +21,6 @@ fn solve(input: &str) -> usize {
 
 fn main() -> std::io::Result<()> {
     println!("Example: {}", solve(EXAMPLE));
-    println!("Example: {}", solve(&std::fs::read_to_string("../4.txt")?));
+    println!("Problem: {}", solve(&std::fs::read_to_string("../4.txt")?));
     Ok(())
 }
